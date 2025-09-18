@@ -28,6 +28,26 @@ export const getAllBooks = (): Book[] => {
     return structuredClone(books);
 };
 
+// Find books in the library system.
+export function findBooks(filters: { title?: string; author?: string; genre?: string }) {
+  let result = books.slice();
+
+  if (filters.title) {
+    const tit = filters.title.toLowerCase();
+    result = result.filter(b => b.title.toLowerCase().includes(tit));
+  }
+  if (filters.author) {
+    const aut = filters.author.toLowerCase();
+    result = result.filter(b => b.author.toLowerCase().includes(aut));
+  }
+  if (filters.genre) {
+    const gen = filters.genre.toLowerCase();
+    result = result.filter(b => b.genre.toLowerCase() === gen);
+  }
+
+  return result;
+}
+
 /**
  * Adds a new book to the library system.
  *
