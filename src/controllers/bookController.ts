@@ -124,3 +124,15 @@ export const getRecommendations = (req: Request, res: Response): void => {
         });
     }
 };
+
+// Get available books controller.
+export const getAvailableBooks = (req: Request, res: Response) => {
+    const available = bookService.getAvailableBooks();
+    return res
+        .status(HTTP_STATUS.OK)
+        .json({
+        message: "Successfully retrieved available books.",
+        data: available,
+        count: available.length
+    });
+};

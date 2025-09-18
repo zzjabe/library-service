@@ -232,5 +232,5 @@ export const getRecommendations = (): Book[] => {
 
 // Find available books library system.
 export function getAvailableBooks(): Book[] {
-  return books.filter(b => b.isBorrowed === false);
+    return books.filter(b => b.isBorrowed === false);
 }
