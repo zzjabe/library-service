@@ -229,3 +229,8 @@ export const returnBook = (id: string): Book | null => {
 export const getRecommendations = (): Book[] => {
     return structuredClone(books.slice(0, 3));
 };
+
+// Find available books library system.
+export function getAvailableBooks(): Book[] {
+  return books.filter(b => b.isBorrowed === false);
+}
