@@ -12,6 +12,17 @@ import { findBooks } from "../services/bookService";
 
 const router: Router = Router();
 
+// Call findBooks function in the route
+router.get("/", (req: Request, res: Response) => {
+  const { title, author, genre } = req.query;
+  const books = findBooks({
+    title: title ? String(title) : undefined,
+    author: author ? String(author) : undefined,
+    genre: genre ? String(genre) : undefined,
+  });
+  res.json(books);
+});
+
 /**
  * Define routes for book management
  */
@@ -23,15 +34,6 @@ router.post("/:id/borrow", borrowBook);
 router.post("/:id/return", returnBook);
 router.get("/recommendations", getRecommendations);
 
-// Call findBooks function in the route
-router.get("/", (req: Request, res: Response) => {
-  const { title, author, genre } = req.query;
-  const books = findBooks({
-    title: title ? String(title) : undefined,
-    author: author ? String(author) : undefined,
-    genre: genre ? String(genre) : undefined,
-  });
-  res.json(books);
-});
+
 
 export default router;
